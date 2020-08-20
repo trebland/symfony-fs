@@ -39,8 +39,8 @@ class HomeController extends AbstractController
     /**
     * @Route("/category/{slug}", name="show_category_recipe")
     */
-    public function show_category_recipe(string $category): Response
+    public function show_category_recipe(string $slug): Response
     {
-        return $this->render('recipes/recipe_category_view.html.twig', ['category' => $category]);
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => $slug]);
     }
 }

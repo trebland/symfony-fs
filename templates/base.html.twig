@@ -26,16 +26,10 @@
                                     Categories
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                    {# Programatic Category Construction #}
-                                    {# {% for post in show_category_recipe %}
-                                        <a class="dropdown-item" href="{{ path('show_category_recipe', {slug: category.title) }}">
-                                            {{ post.title }}
-                                        </a>
-                                    {% endfor %} #}
-                                    {{ render(controller(
-                                        'App\\Controller\\CategoryController::categories'
-                                    )) }}
+                                        {# Programatic Category Construction #}
+                                        {{ render(controller(
+                                            'App\\Controller\\CategoryController::categories'
+                                        )) }}
                                 </li>
                             </ul>
                             <ul class="navbar-nav ml-auto">
