@@ -4,12 +4,14 @@ $(document).ready(function() {
     var $addButton = $("#add-ingredient");
     $collectionPanel = $("#ingredients .collection");
 
+    // Adds a delete button onto each group innately included in the form
     $('.delete-group').each(function (){
         $(this).click(function () {
-            $(this).closest('.input-group').remove();
+            removeAndUpdateIngredients($(this));
         })
     });
 
+    // Allows for the user to add an ingredient field.
     $addButton.click(function () {
         addField();
     });
@@ -25,7 +27,7 @@ function addField() {
     var $button = $('<button class="btn btn-danger" type="button" id="button-addon' + length + '">Delete</button>');
 
     $button.click(function () {
-        $(this).closest('.input-group').remove();
+        removeAndUpdateIngredients($(this));
     });
     
     var $inputGroup = $(`
@@ -38,10 +40,16 @@ function addField() {
         </div>
     `).append($input).append($inputGroup);
 
+    // Adds a delete button onto each group dynamically included in the form
     $collectionPanel.append($field);
 }
 
 // Current area of improvement
-function updateIngredients() {
-    $('.recipe_ingredient').closest('.input-group').remove();
+function removeAndUpdateIngredients(buttonRef) {
+    $(buttonRef).closest('.input-group').remove();
+    
+    $('.recipe_ingredient').each(function(index) {
+        $(this).attr('id', "recipe_ingredients_" + index);
+        $(this).attr('name', "recipe[ingredients][" + index + "]");
+    });
 }

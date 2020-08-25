@@ -31,12 +31,12 @@
                     {% if loop.first %}
                         {{ form_errors(ingredient) }}
                         <div class="input-group mb-3">
-                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control', 'placeholder': 'Ingredient Name'}}) }}
+                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control recipe_ingredient', 'placeholder': 'Ingredient Name'}}) }}
                         </div>
                     {% else %}
                         {{ form_errors(ingredient) }}
                         <div class="input-group mb-3">
-                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control', 'placeholder': 'Ingredient Name'}}) }}
+                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control recipe_ingredient', 'placeholder': 'Ingredient Name'}}) }}
                             <div class="input-group-append delete-group">
                                 <button class="btn btn-danger delete" type="button">Delete</button>
                             </div>
