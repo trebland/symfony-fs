@@ -7,36 +7,25 @@
             <h1>{{ category }}</h1>
         </div>
         <div class="row">
-            <div class="col-sm" align="center">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('assets/burger.jpg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Recipe Title</h5>
-                        <p class="card-text">Recipe Ingredients</p>
-                        <a href="#" class="btn btn-primary">Recipe Details</a>
+            {# Programmatic construction of recipes with a nested for loop for ingredients #}
+            {% for recipe in recipes %}
+                <div class="col-sm" align="center">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            <p class="card-text">
+                                {% for ingredient in recipe.ingredients %}
+                                    <div>{{ ingredient }}</div>
+                                {% endfor %}
+                            </p>
+                            <span>
+                                <a href="#" class="btn btn-success">View Details</a>
+                                <a href="#" class="btn btn-danger">Edit Recipe</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm" align="center">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('assets/burger.jpg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Recipe Title</h5>
-                        <p class="card-text">Recipe Ingredients</p>
-                        <a href="#" class="btn btn-primary">Recipe Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm" align="center">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('assets/burger.jpg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Recipe Title</h5>
-                        <p class="card-text">Recipe Ingredients</p>
-                        <a href="#" class="btn btn-primary">Recipe Details</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

@@ -15,6 +15,10 @@ body {
     padding-bottom: 1.5rem;
 }
 
+.buffer {
+    padding: 10px 0px;
+}
+
 /* Bootstrap Modifications */
 
 .col-sm {

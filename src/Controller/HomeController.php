@@ -5,6 +5,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use App\Entity\Recipe;
+
 class HomeController extends AbstractController
 {
     /**
@@ -23,9 +25,9 @@ class HomeController extends AbstractController
     /**
     * @Route("/create-recipe", name="show_create_recipe")
     */
-    public function show_create_recipe(): Response
+    public function show_create_recipe(int $ingredients = 1): Response
     {
-        return $this->render('recipes/add.html.twig');
+        return $this->render('recipes/add.html.twig', ['ingredients' => $ingredients]);
     }
 
     /**
@@ -41,6 +43,10 @@ class HomeController extends AbstractController
     */
     public function show_category_recipe(string $slug): Response
     {
-        return $this->render('recipes/recipe_category_view.html.twig', ['category' => $slug]);
+        $recipes = $this->getDoctrine() 
+        ->getRepository('App:Recipe') 
+        ->findAll();
+        
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => $slug, 'recipes' => $recipes]);
     }
 }

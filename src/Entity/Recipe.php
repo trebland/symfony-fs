@@ -27,6 +27,16 @@ class Recipe
      */
     private $ingredients = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +62,30 @@ class Recipe
     public function setIngredients(array $ingredients): self
     {
         $this->ingredients = $ingredients;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

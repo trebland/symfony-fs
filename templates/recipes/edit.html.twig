@@ -6,6 +6,46 @@
         <div class="top-line">
             <h1>Edit Recipes</h1>
         </div>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Title</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Category</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="validationTextarea">Description</label>
+                    <textarea class="form-control" id="validationTextarea" placeholder="Recipe Description" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputIngredients">Ingredients</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon2" id="ingredientsContainer">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Delete</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add Ingredient</button>
+                </div>
+            </div>
+            <div class="form-row submit">
+                <button type="submit" class="btn btn-primary">Save Recipe</button>
+            </div>
+        </form>
     </div>
 
 {% endblock %}

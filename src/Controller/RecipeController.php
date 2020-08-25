@@ -3,32 +3,48 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Form\RecipeType;
+
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
 
     /**
-     * @Route("/recipe", name="create_recipe")
+     * @Route("/recipe", methods="GET|POST", name="create_recipe")
      */
-    public function createRecipe(): Response
+    public function new(Request $request, string $title = "", string $category = "", string $description = "", array $ingredients = [""], int $numIngredients = 1): Response
     {
         // you can fetch the EntityManager via $this->getDoctrine()
         // or you can add an argument to the action: createRecipe(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
-
         $recipe = new Recipe();
-        $recipe->setTitle('Burger');
-        $recipe->setIngredients(['Lettuce','Burg']);
+        $recipe->setTitle($title);
+        $recipe->setCategory($category);
+        $recipe->setDescription($description);
+        $recipe->setIngredients($ingredients);
 
-        // tell Doctrine you want to (eventually) save the Recipe (no queries yet)
-        $entityManager->persist($recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
 
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+        if ($request->isMethod('post'))
+        {
+            $entityManager = $this->getDoctrine()->getManager();
 
-        return new Response('Saved new recipe with id '.$recipe->getId());
+            // tell Doctrine you want to (eventually) save the Recipe (no queries yet)
+            $entityManager->persist($recipe);
+
+            // actually executes the queries (i.e. the INSERT query)
+            $entityManager->flush();
+
+            return new Response('Saved new recipe with id '.$recipe->getId());
+        }
+
+        return $this->render('recipe/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
