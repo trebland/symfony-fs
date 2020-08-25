@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div>
+        <div class="top-line">
+            <h1>{{ category }}</h1>
+        </div>
+        <div class="row">
+            {{ include('recipes/_recipe_cards.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}

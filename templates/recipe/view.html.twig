@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('recipe') }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="top-line">
+        <h1>{{ recipe.title }}</h1>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div id="title">
+                <div class="section-title">Title</div>
+                {{ recipe.title }}
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div id="category">
+                <div class="section-title">Category</div>
+                {{ recipe.category }}
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div id="description">
+                <div class="section-title">Description</div>
+                {{ recipe.description }}
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div id="ingredients">
+                <div class="section-title">Ingredients</div>  
+                <div class="collection"> 
+                    <ul>
+                    {% for ingredient in recipe.ingredients %}
+                        <li class="ingredient">
+                            {{ ingredient }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span>
+        <a href="/" class="btn btn-success">Back</a>
+        <a href="/recipe/edit/{{ recipe.id }}" class="btn btn-primary">Edit Recipe</a>
+    </span>
+
+{% endblock %}

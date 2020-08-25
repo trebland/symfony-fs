@@ -1,0 +1,30 @@
+{# templates/task/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('recipe') }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="top-line">
+        <h1>Edit Recipe</h1>
+    </div>
+
+    {{ form_start(form) }}
+        
+        {{ include('recipe/_form.html.twig') }}
+
+        <div class="form-row submit">
+            <span>
+                <a href="/" class="btn btn-success">Back</a>
+                <button type="submit" class="btn btn-primary">Save Recipe</button>
+                <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Delete Recipe</a>
+            </span>
+        </div>
+
+        {{ include('recipe/_delete.html.twig') }}
+    {{ form_end(form) }}
+
+{% endblock %}

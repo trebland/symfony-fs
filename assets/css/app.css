@@ -1,3 +1,42 @@
 body {
-    background-color: lightgray;
+    color: #000;
+    background-color: #fff;
+}
+
+.h1, h1 {
+    margin: 0px;
+}
+
+.top-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 2rem;
+}
+
+.ingredient {
+    font-size: 1rem;
+}
+
+.buffer {
+    padding: 10px 0px;
+}
+
+/* Bootstrap Modifications */
+
+.col-sm {
+    justify-content: center;
+}
+
+.form-row.submit{
+    padding-top: 40px;
+}
+
+.navbar {
+    margin-bottom: 1rem;
 }
