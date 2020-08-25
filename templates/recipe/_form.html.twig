@@ -1,3 +1,4 @@
+{# Fragment to display form information #}
 <div class="my-custom-class-for-errors">
     {{ form_errors(form) }}
 </div>
@@ -28,11 +29,13 @@
             <div>{{ form_label(form.ingredients) }}</div>  
             <div class="collection"> 
                 {% for ingredient in form.ingredients%}
+                    {# Our first item is never deletable, this is to ensure that our ingredients always contains some number of elements #}
                     {% if loop.first %}
                         {{ form_errors(ingredient) }}
                         <div class="input-group mb-3">
                             {{ form_widget(ingredient, { 'attr': {'class': 'form-control recipe_ingredient', 'placeholder': 'Ingredient Name'}}) }}
                         </div>
+                    {# All other ingredients are deletable so we append the delete button to them #}
                     {% else %}
                         {{ form_errors(ingredient) }}
                         <div class="input-group mb-3">

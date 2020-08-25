@@ -27,6 +27,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         {# Programatic Category Construction #}
+                                        {# Originally utilized in this manner to enable the user to add categories, which is currently not being utilized effectively #}
                                         {{ render(controller(
                                             'App\\Controller\\CategoryController::showCategories'
                                         )) }}

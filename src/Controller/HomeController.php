@@ -9,6 +9,10 @@ use Psr\Log\LoggerInterface;
 
 use App\Entity\Recipe;
 
+/**
+ * Navigation controller
+ * Takes route feedback and points to the appropriate page that isn't entity specific
+ */
 class HomeController extends AbstractController
 {
     /**
@@ -21,23 +25,6 @@ class HomeController extends AbstractController
         ->findAll();
         
         return $this->render('default/homepage.html.twig', ['recipes' => $recipes]);
-    }
-
-    
-    /**
-    * @Route("/create-recipe", name="show_create_recipe")
-    */
-    public function show_create_recipe(int $ingredients = 1): Response
-    {
-        return $this->render('recipes/add.html.twig', ['ingredients' => $ingredients]);
-    }
-
-    /**
-    * @Route("/edit-recipes", name="show_edit_recipes")
-    */
-    public function show_edit_recipe(): Response
-    {
-        return $this->render('recipes/edit.html.twig');
     }
 
     /**

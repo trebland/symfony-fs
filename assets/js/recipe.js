@@ -1,7 +1,10 @@
 var $collectionPanel;
 
 $(document).ready(function() {
+    // Our button which we will use to add an ingredient slot
     var $addButton = $("#add-ingredient");
+
+    // Our container for ingredients
     $collectionPanel = $("#ingredients .collection");
 
     // Adds a delete button onto each group innately included in the form
@@ -19,11 +22,22 @@ $(document).ready(function() {
 
 });
 
+// Adds an ingredient input field with the appropriate ids/names/classes
 function addField() {
     var length = $collectionPanel.children().length;
 
-    var $input = $('<input type="text" id="recipe_ingredients_' + length + '" name="recipe[ingredients][' + length + ']" class="form-control recipe_ingredient" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon' + length + '" required>');
+    var $field = $(`
+        <div class="input-group mb-3">
+        <input type="text" id="recipe_ingredients_` + length + `" name="recipe[ingredients][` + length + `]" class="form-control recipe_ingredient" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon` + length + `" required>
+        </div>
+    `).append(createButtonGroup());
 
+    // Adds a delete button onto each group dynamically included in the form
+    $collectionPanel.append($field);
+}
+
+// Manufactures the button group to append to the ingredient input field
+function createButtonGroup() {
     var $button = $('<button class="btn btn-danger" type="button" id="button-addon' + length + '">Delete</button>');
 
     $button.click(function () {
@@ -35,16 +49,11 @@ function addField() {
     </div>
     `).append($button);
 
-    var $field = $(`
-        <div class="input-group mb-3">
-        </div>
-    `).append($input).append($inputGroup);
-
-    // Adds a delete button onto each group dynamically included in the form
-    $collectionPanel.append($field);
+    return $inputGroup;
 }
 
-// Current area of improvement
+// Removes the ingredient line and updates the necessary ids/names to ensure
+// .. recipe saving for ingredients occurs correctly.
 function removeAndUpdateIngredients(buttonRef) {
     $(buttonRef).closest('.input-group').remove();
     
