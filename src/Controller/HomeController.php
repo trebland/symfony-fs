@@ -28,31 +28,30 @@ class HomeController extends AbstractController
     }
 
     /**
-     * The slug is our category
-    * @Route("/category/{slug}", name="show_category_recipe")
+    * @Route("/category/{category}", name="show_category_recipe")
     */
-    public function showCategoryRecipe(string $slug): Response
+    public function showCategoryRecipe(string $category): Response
     {
         $recipes = $this->getDoctrine() 
         ->getRepository('App:Recipe') 
         ->findBy(
-            ['category' => strtolower($slug)],
+            ['category' => strtolower($category)],
             ['id' => 'DESC'],
         );
         
-        return $this->render('recipes/recipe_category_view.html.twig', ['category' => ucfirst($slug), 'recipes' => $recipes]);
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => ucfirst($category), 'recipes' => $recipes]);
     }
 
     /**
      * The slug acts as our search criteria
-    * @Route("/search/{slug}", name="show_search_recipes")
+    * @Route("/search/{query}", name="show_search_recipes")
     */
-    public function showSearchRecipe(string $slug): Response
+    public function showSearchRecipe(string $query): Response
     {
         $recipes = $this->getDoctrine() 
             ->getRepository('App:Recipe') 
-            ->searchFor($slug);
+            ->searchFor($query);
         
-        return $this->render('recipes/recipe_category_view.html.twig', ['category' => "Searched: ".$slug, 'recipes' => $recipes]);
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => "Searched: ".$query, 'recipes' => $recipes]);
     }
 }
