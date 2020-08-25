@@ -46,9 +46,10 @@ class HomeController extends AbstractController
         $recipes = $this->getDoctrine() 
         ->getRepository('App:Recipe') 
         ->findBy(
-            ['category' => $slug]
+            ['category' => strtolower($slug)],
+            ['id' => 'DESC'],
         );
         
-        return $this->render('recipes/recipe_category_view.html.twig', ['category' => $slug, 'recipes' => $recipes]);
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => ucfirst($slug), 'recipes' => $recipes]);
     }
 }

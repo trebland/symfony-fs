@@ -19,6 +19,11 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('id' => 'DESC'));
+    }
+
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */

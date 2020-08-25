@@ -1,9 +1,5 @@
-{% block categories %}
-
-    {% for category in categories %}
-        <a class="dropdown-item" href="/category/{{ category }}">
-            {{ category }}
-        </a>
-    {% endfor %}
-
-{% endblock %}
+{% for category in categories %}
+    <a class="dropdown-item" href="/category/{{ category }}">
+        {{ category }}
+    </a>
+{% endfor %}
