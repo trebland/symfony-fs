@@ -91,7 +91,7 @@ class RecipeController extends AbstractController
 
     /**
      * The slug will act as the id when querying the db
-     * @Route("/recipe/delete/{slug}", methods="POST", name="delete_recipe")
+     * @Route("/recipe/delete/{slug}", methods="GET|POST", name="delete_recipe")
      */
     public function delete(string $slug): Response
     {

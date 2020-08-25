@@ -28,9 +28,10 @@ class HomeController extends AbstractController
     }
 
     /**
+     * The slug is our category
     * @Route("/category/{slug}", name="show_category_recipe")
     */
-    public function show_category_recipe(string $slug): Response
+    public function showCategoryRecipe(string $slug): Response
     {
         $recipes = $this->getDoctrine() 
         ->getRepository('App:Recipe') 
@@ -40,5 +41,18 @@ class HomeController extends AbstractController
         );
         
         return $this->render('recipes/recipe_category_view.html.twig', ['category' => ucfirst($slug), 'recipes' => $recipes]);
+    }
+
+    /**
+     * The slug acts as our search criteria
+    * @Route("/search/{slug}", name="show_search_recipes")
+    */
+    public function showSearchRecipe(string $slug): Response
+    {
+        $recipes = $this->getDoctrine() 
+            ->getRepository('App:Recipe') 
+            ->searchFor($slug);
+        
+        return $this->render('recipes/recipe_category_view.html.twig', ['category' => "Searched: ".$slug, 'recipes' => $recipes]);
     }
 }

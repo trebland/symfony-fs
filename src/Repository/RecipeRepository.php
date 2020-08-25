@@ -19,9 +19,35 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    public function findAll()
+    /**
+     * @return Recipe[]
+     */
+    public function findAll(): array
     {
         return $this->findBy(array(), array('id' => 'DESC'));
+    }
+
+    /**
+     * @return Recipe[]
+     */
+    public function searchFor(string $query): array {
+        // automatically knows to select Recipes
+        // the "r" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.title LIKE :wildcard')
+            ->orWhere('r.category LIKE :wildcard')
+            ->orWhere('r.description LIKE :wildcard')
+            ->orWhere('r.ingredients LIKE :wildcard')
+            ->setParameter('wildcard', '%'.$query.'%')
+            ->orderBy('r.id', 'DESC');
+
+        // if (!$includeUnavailableProducts) {
+        //     $qb->andWhere('p.available = TRUE')
+        // }
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
 
     // /**
