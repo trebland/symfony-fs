@@ -17,7 +17,7 @@ class CategoryController extends AbstractController
 {
     public function showCategories(): Response
     {
-        // get the recent articles somehow (e.g. making a database query)
+        // Static set of articles
         $categories = ['Breakfast', 'Lunch', 'Dinner'];
 
         return $this->render('recipes/_categories.html.twig', [

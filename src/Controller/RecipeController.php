@@ -50,16 +50,16 @@ class RecipeController extends AbstractController
 
     /**
      * The slug will act as the id when querying the db
-     * @Route("/recipe/edit/{slug}", methods="GET|POST", name="edit_recipe")
+     * @Route("/recipe/edit/{recipeid}", methods="GET|POST", name="edit_recipe")
      */
-    public function edit(Request $request, string $slug): Response
+    public function edit(Request $request, string $recipeid): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 
         // Original Recipe --
         // .. The next few lines are used to identify the existence of the item
         // .. to ensure we're able to modify it.
-        $recipe = $entityManager->getRepository(Recipe::class)->find($slug);
+        $recipe = $entityManager->getRepository(Recipe::class)->find($recipeid);
 
         if (!$recipe) {
             throw $this->createNotFoundException(
@@ -91,16 +91,16 @@ class RecipeController extends AbstractController
 
     /**
      * The slug will act as the id when querying the db
-     * @Route("/recipe/delete/{slug}", methods="GET|POST", name="delete_recipe")
+     * @Route("/recipe/delete/{recipeid}", methods="GET|POST", name="delete_recipe")
      */
-    public function delete(string $slug): Response
+    public function delete(string $recipeid): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 
         // Original Recipe --
         // .. The next few lines are used to identify the existence of the item
         // .. to ensure we're able to modify it.
-        $recipe = $entityManager->getRepository(Recipe::class)->find($slug);
+        $recipe = $entityManager->getRepository(Recipe::class)->find($recipeid);
 
         if (!$recipe) {
             throw $this->createNotFoundException(
@@ -120,16 +120,16 @@ class RecipeController extends AbstractController
 
     /**
      * The slug will act as the id when querying the db
-     * @Route("/recipe/{slug}", methods="GET", name="view_recipe")
+     * @Route("/recipe/{recipeid}", methods="GET", name="view_recipe")
      */
-    public function view(string $slug): Response
+    public function view(string $recipeid): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 
         // Original Recipe --
         // .. The next few lines are used to identify the existence of the item
         // .. to ensure we're able to modify it.
-        $recipe = $entityManager->getRepository(Recipe::class)->find($slug);
+        $recipe = $entityManager->getRepository(Recipe::class)->find($recipeid);
 
         if (!$recipe) {
             throw $this->createNotFoundException(
