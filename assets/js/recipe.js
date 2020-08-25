@@ -13,7 +13,7 @@ function addField() {
     $collectionPanel = $("#ingredients .collection");
     var length = $collectionPanel.children().length;
 
-    var $input = $('<input type="text" class="form-control" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon' + length + '" required>');
+    var $input = $('<input type="text" id="recipe_ingredients_' + length + '" name="recipe[ingredients][' + length + ']" class="form-control" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon' + length + '" required>');
 
     var $button = $('<button class="btn btn-danger" type="button" id="button-addon' + length + '">Delete</button>');
 
