@@ -10,15 +10,15 @@ use App\Entity\Recipe;
 class HomeController extends AbstractController
 {
     /**
-    * @Route("/login", name="transition_home")
+    * @Route("/", name="transition_home")
     */
-    public function number(): Response
+    public function index(): Response
     {
-        $number = random_int(0, 100);
-
-        return $this->render('home.html.twig', [
-            'number' => $number,
-        ]);
+        $recipes = $this->getDoctrine() 
+        ->getRepository('App:Recipe') 
+        ->findAll();
+        
+        return $this->render('default/homepage.html.twig', ['recipes' => $recipes]);
     }
 
     
@@ -45,7 +45,9 @@ class HomeController extends AbstractController
     {
         $recipes = $this->getDoctrine() 
         ->getRepository('App:Recipe') 
-        ->findAll();
+        ->findBy(
+            ['category' => $slug]
+        );
         
         return $this->render('recipes/recipe_category_view.html.twig', ['category' => $slug, 'recipes' => $recipes]);
     }
