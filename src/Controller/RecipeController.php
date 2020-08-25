@@ -49,9 +49,9 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/recipe/edit", methods="GET|POST", name="edit_recipe")
+     * @Route("/recipe/edit/{slug}", methods="GET|POST", name="edit_recipe")
      */
-    public function edit(Request $request, string $title = "", string $category = "", string $description = "", array $ingredients = [""], int $numIngredients = 1): Response
+    public function edit(Request $request, string $slug, string $title = "", string $category = "", string $description = "", array $ingredients = [""], int $numIngredients = 1): Response
     {
         // you can fetch the EntityManager via $this->getDoctrine()
         // or you can add an argument to the action: createRecipe(EntityManagerInterface $entityManager)
@@ -64,7 +64,7 @@ class RecipeController extends AbstractController
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
 
-        if ($request->isMethod('post'))
+        if ($form->isSubmitted() && $form->isValid())
         {
             $entityManager = $this->getDoctrine()->getManager();
 
