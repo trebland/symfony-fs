@@ -1,6 +1,6 @@
 {# Programmatic construction of recipes with a nested for loop for ingredients #}
 {% for recipe in recipes %}
-    <div class="col-sm" align="center">
+    <div class="col-sm" style="padding: 1rem;" align="center">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ recipe.title }}</h5>
@@ -10,8 +10,8 @@
                     {% endfor %}
                 </p>
                 <span>
-                    <a href="#" class="btn btn-success">View Details</a>
-                    <a href="#" class="btn btn-danger">Edit Recipe</a>
+                    <a href="/recipe/{{ recipe.id }}" class="btn btn-success">View</a>
+                    <a href="/recipe/edit/{{ recipe.id }}" class="btn btn-primary">Edit</a>
                 </span>
             </div>
         </div>

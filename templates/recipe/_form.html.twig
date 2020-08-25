@@ -1,0 +1,52 @@
+<div class="my-custom-class-for-errors">
+    {{ form_errors(form) }}
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <div id="title">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <div id="category">
+            {{ form_row(form.category, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <div id="description">
+            {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <div id="ingredients">
+            <div>{{ form_label(form.ingredients) }}</div>  
+            <div class="collection"> 
+                {% for ingredient in form.ingredients%}
+                    {% if loop.first %}
+                        {{ form_errors(ingredient) }}
+                        <div class="input-group mb-3">
+                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control', 'placeholder': 'Ingredient Name'}}) }}
+                        </div>
+                    {% else %}
+                        {{ form_errors(ingredient) }}
+                        <div class="input-group mb-3">
+                            {{ form_widget(ingredient, { 'attr': {'class': 'form-control', 'placeholder': 'Ingredient Name'}}) }}
+                            <div class="input-group-append delete-group">
+                                <button class="btn btn-danger delete" type="button">Delete</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="buffer">
+                <button id="add-ingredient" class="btn btn-success" type="button">Add Ingredient</button>
+            </div>
+        </div>
+    </div>
+</div>

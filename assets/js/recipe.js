@@ -1,6 +1,14 @@
+var $collectionPanel;
+
 $(document).ready(function() {
     var $addButton = $("#add-ingredient");
-    var $removeButton = $("#remove-ingredient");
+    $collectionPanel = $("#ingredients .collection");
+
+    $('.delete-group').each(function (){
+        $(this).click(function () {
+            $(this).closest('.input-group').remove();
+        })
+    });
 
     $addButton.click(function () {
         addField();
@@ -10,10 +18,9 @@ $(document).ready(function() {
 });
 
 function addField() {
-    $collectionPanel = $("#ingredients .collection");
     var length = $collectionPanel.children().length;
 
-    var $input = $('<input type="text" id="recipe_ingredients_' + length + '" name="recipe[ingredients][' + length + ']" class="form-control" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon' + length + '" required>');
+    var $input = $('<input type="text" id="recipe_ingredients_' + length + '" name="recipe[ingredients][' + length + ']" class="form-control recipe_ingredient" placeholder="Ingredient Name" aria-label="Ingredient Name" aria-describedby="button-addon' + length + '" required>');
 
     var $button = $('<button class="btn btn-danger" type="button" id="button-addon' + length + '">Delete</button>');
 
@@ -22,7 +29,7 @@ function addField() {
     });
     
     var $inputGroup = $(`
-    <div class="input-group-append">
+    <div class="input-group-append delete-group">
     </div>
     `).append($button);
 
@@ -34,7 +41,7 @@ function addField() {
     $collectionPanel.append($field);
 }
 
-function removeField() {
-    $().closest('.input-group').remove();
+// Current area of improvement
+function updateIngredients() {
+    $('.recipe_ingredient').closest('.input-group').remove();
 }
-

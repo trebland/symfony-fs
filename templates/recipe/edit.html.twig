@@ -9,57 +9,22 @@
 {% block main %}
 
     <div class="top-line">
-        <h1>Add Recipe</h1>
+        <h1>Edit Recipe</h1>
     </div>
-    {{ form_start(form) }}
-        <div class="my-custom-class-for-errors">
-            {{ form_errors(form) }}
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <div id="title">
-                    {{ form_label(form.title) }}
-                    {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <div id="category">
-                    {{ form_row(form.category, { 'attr': {'class': 'form-control'} }) }}
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <div id="description">
-                    {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }}
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <div id="ingredients">
-                    <div>{{ form_label(form.ingredients) }}</div>  
-                    <div class="collection"> 
-                        {% for ingredient in form.ingredients %}
-                            <div>
-                                {{ form_errors(ingredient) }}
-                                <div class="input-group mb-3">
-                                    {{ form_widget(ingredient, { 'attr': {'class': 'form-control', 'aria-describedby': 'button-addon2', 'placeholder': 'Ingredient Name'}}) }}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="buffer">
-                        <button id="add-ingredient" class="btn btn-success" type="button">Add Ingredient</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {{ form_start(form) }}
+        
+        {{ include('recipe/_form.html.twig') }}
 
         <div class="form-row submit">
-            <button type="submit" class="btn btn-primary">Save Recipe</button>
+            <span>
+                <a href="/" class="btn btn-success">Back</a>
+                <button type="submit" class="btn btn-primary">Save Recipe</button>
+                <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">Delete Recipe</a>
+            </span>
         </div>
+
+        {{ include('recipe/_delete.html.twig') }}
     {{ form_end(form) }}
 
 {% endblock %}

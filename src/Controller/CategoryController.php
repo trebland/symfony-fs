@@ -30,7 +30,7 @@ class CategoryController extends AbstractController
         return new Response('Saved new category with id '.$category->getId());
     }
 
-    public function categories()
+    public function showCategories(): Response
     {
         // get the recent articles somehow (e.g. making a database query)
         $categories = ['Breakfast', 'Lunch', 'Dinner'];

@@ -5,6 +5,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Psr\Log\LoggerInterface;
+
 use App\Entity\Recipe;
 
 class HomeController extends AbstractController

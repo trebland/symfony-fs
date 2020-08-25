@@ -28,14 +28,14 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         {# Programatic Category Construction #}
                                         {{ render(controller(
-                                            'App\\Controller\\CategoryController::categories'
+                                            'App\\Controller\\CategoryController::showCategories'
                                         )) }}
                                     </div>
                                 </li>
                             </ul>
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/recipe">Add</a>
+                                    <a class="nav-link" href="/recipe/new">Add</a>
                                 </li>
                             <ul>
                             <form class="form-inline my-2 my-lg-0">
